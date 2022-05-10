@@ -5,14 +5,14 @@
         <!-- create a new Recipe -->
 <div class="createRecipe">
 <form action="#" th:action="@{/saveRecipe}" method="POST">
-<!--    <label for="recipeName">Recipe Name</label>-->
-<!--    <input type="text" id="recipeName" name="RecipeName" placeholder="Your recipe name..">-->
+    <label for="recipeName">Recipe Name</label>
+    <input type="text" th:field="*{recipe.recipeName}" id="recipeName" name="RecipeName" placeholder="Your recipe name..">
 
     <label for="ingredients">Ingredient</label>
-    <input type="text" th:field="*{recipe.RecipeName}" id="ingredients" name="Ingredient" placeholder="Your ingredient..">
+    <input type="text" th:field="*{recipe.ingredients}" id="ingredients" name="Ingredient" placeholder="Your ingredient..">
 
     <label for="quantity">Quantity</label>
-    <input type="text" th:field="*{recipe.Ingredients}" id="quantity" name="Quantity" placeholder="Your quantity..">
+    <input type="number" th:field="*{recipe.quantity}" id="quantity" name="Quantity" placeholder="Your quantity..">
 
     <input type="submit" value="Submit">
 </form>

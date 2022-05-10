@@ -12,9 +12,9 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String RecipeName;
+    private String recipeName;
 
-    private String Ingredients;
+    private String ingredients;
 
     private double quantity;
 
@@ -27,19 +27,19 @@ public class Recipe {
     }
 
     public String getRecipeName() {
-        return RecipeName;
+        return recipeName;
     }
 
     public void setRecipeName(String recipeName) {
-        RecipeName = recipeName;
+        this.recipeName = recipeName;
     }
 
     public String getIngredients() {
-        return Ingredients;
+        return ingredients;
     }
 
     public void setIngredients(String ingredients) {
-        Ingredients = ingredients;
+        this.ingredients = ingredients;
     }
 
     public double getQuantity() {
@@ -50,7 +50,7 @@ public class Recipe {
         this.quantity = quantity;
     }
 
-//    public Recipe() {
+    //    public Recipe() {
 //    }
 //    public Recipe(String recipeName, String ingredients, double quantity) {
 //        this.RecipeName = recipeName;
