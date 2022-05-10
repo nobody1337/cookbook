@@ -1,0 +1,12 @@
+<head th:insert="fragments/components :: header"></head>
+<nav th:insert="fragments/components :: navbar"></nav>
+
+<form action="/newRecipe">
+    <label for="ingredients">Ingredient</label>
+    <input type="text" id="ingredients" name="Ingredient" placeholder="Your ingredient..">
+
+    <label for="quantity">Quantity</label>
+    <input type="text" id="quantity" name="Quantity" placeholder="Your quantity..">
+
+    <input type="submit" value="Submit">
+</form>
