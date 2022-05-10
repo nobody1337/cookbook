@@ -1,9 +1,11 @@
 package de.cookbook.cookbook.controller;
 
 
+import de.cookbook.cookbook.model.Recipe;
 import de.cookbook.cookbook.repository.RecipeRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RecipeController {
@@ -17,8 +19,14 @@ public class RecipeController {
     }
 
     @GetMapping("/newRecipe")
-    public String addRecipe(){
+    public String addRecipe(Recipe recipe){
         return "newRecipe";
+    }
+
+    @PostMapping("/saveRecipe")
+    public String saveRecipe(Recipe recipe){
+        recipeRepository.save(recipe);
+        return "index";
     }
 
 }
