@@ -11,7 +11,7 @@ public class RecipeController {
     RecipeRepository recipeRepository;
 
     //GET-Methoden
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index(){
         return "index";
     }
