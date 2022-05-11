@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/components :: header"></head>
+<nav th:insert="fragments/components :: navbar"></nav>
+<div class="recipeCollection">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">RecipeName</th>
+                <th scope="col">Ingredients</th>
+                <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="recipe: ${recipe}">
+                <td th:text="${recipe.recipeName}"></td>
+                <td th:text="${recipe.ingredients}"></td>
+                <td th:text="${recipe.quantity}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</html>
