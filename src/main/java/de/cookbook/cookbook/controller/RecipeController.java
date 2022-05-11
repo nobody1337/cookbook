@@ -1,7 +1,9 @@
 package de.cookbook.cookbook.controller;
 
 
+import de.cookbook.cookbook.model.Ingredient;
 import de.cookbook.cookbook.model.Recipe;
+import de.cookbook.cookbook.repository.IngredientRepository;
 import de.cookbook.cookbook.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ public class RecipeController {
     @Autowired
     RecipeRepository recipeRepository;
 
+    @Autowired
+    IngredientRepository ingredientRepository;
+
     public RecipeController(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
@@ -28,7 +33,7 @@ public class RecipeController {
     }
 
     @GetMapping("/newRecipe")
-    public String addRecipe(Recipe recipe){
+    public String addRecipe(Ingredient ingredient,Ingredient quantity,Recipe recipe){
         return "newRecipe";
     }
 
@@ -39,8 +44,9 @@ public class RecipeController {
     }
 
     @PostMapping("/saveRecipe")
-    public String saveRecipe(Recipe recipe){
+    public String saveRecipe(Recipe recipe,Ingredient ingredient){
         recipeRepository.save(recipe);
+        ingredientRepository.save(ingredient);
         return "index";
     }
 

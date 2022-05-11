@@ -1,22 +1,24 @@
 package de.cookbook.cookbook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "RECIPE_ID")
     private long id;
 
     private String recipeName;
 
-    private String ingredients;
-
-    private double quantity;
+    @ManyToMany //Gibt die Beziehung der Tabellen an
+    @JoinTable(name = "Recipe_Ingredient",
+    joinColumns = @JoinColumn(name = "RECIPE_ID"),
+    inverseJoinColumns = @JoinColumn(name = "INGREDIENT_ID"))
+    public Set<Ingredient>Ingredients= new HashSet<>();
 
     public long getId() {
         return id;
@@ -34,20 +36,12 @@ public class Recipe {
         this.recipeName = recipeName;
     }
 
-    public String getIngredients() {
-        return ingredients;
+    public Set<Ingredient> getIngredients() {
+        return Ingredients;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setIngredients(Set<Ingredient> ingredients) {
+        Ingredients = ingredients;
     }
 
     //    public Recipe() {
