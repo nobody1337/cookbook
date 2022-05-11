@@ -14,6 +14,10 @@ public class RecipeController {
     @Autowired
     RecipeRepository recipeRepository;
 
+    public RecipeController(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
+    }
+
     //GET-Methoden
     @GetMapping("/index")
     public String index(){
@@ -23,6 +27,11 @@ public class RecipeController {
     @GetMapping("/newRecipe")
     public String addRecipe(Recipe recipe){
         return "newRecipe";
+    }
+
+    @GetMapping("/recipeCollection")
+    public String recipeCol(){
+        return "recipeCollection";
     }
 
     @PostMapping("/saveRecipe")
