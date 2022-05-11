@@ -3,19 +3,26 @@
 <nav th:insert="fragments/components :: navbar"></nav>
 
         <!-- create a new Recipe -->
-<div class="createRecipe">
-<form action="#" th:action="@{/saveRecipe}" method="POST">
-    <label for="recipeName">Recipe Name</label>
-    <input type="text" th:field="*{recipe.recipeName}" id="recipeName" name="RecipeName" placeholder="Your recipe name..">
-
-    <label for="ingredients">Ingredient</label>
-    <input type="text" th:field="*{recipe.ingredients}" id="ingredients" name="Ingredient" placeholder="Your ingredient..">
-
-    <label for="quantity">Quantity</label>
-    <input type="number" th:field="*{recipe.quantity}" id="quantity" name="Quantity" placeholder="Your quantity..">
-
-    <input type="submit" value="Submit">
-</form>
+<div class="addrecipe">
+    <form action="#" th:action="@{/saveRecipe}" method="POST">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">RecipeName</th>
+            <th scope="col">Ingredients</th>
+            <th scope="col">Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" th:field="*{recipe.recipeName}" id="recipeName" name="RecipeName" placeholder="Your recipe name.."></td>
+            <td><input type="text" th:field="*{recipe.ingredients}" id="ingredients" name="Ingredient" placeholder="Your ingredient.."></td>
+            <td><input type="number" th:field="*{recipe.quantity}" id="quantity" name="Quantity" placeholder="Your quantity.."></td>
+        </tr>
+    </tbody>
+</table>
+<input type="submit" value="Add">
+    </form>
 </div>
 </html>
 
