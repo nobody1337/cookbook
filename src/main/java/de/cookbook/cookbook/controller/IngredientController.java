@@ -15,4 +15,11 @@ public class IngredientController {
     public IngredientController(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
+
+//    @GetMapping("/newRecipe")
+//    public String saveIngredients(){
+//
+//    }
+
+
 }

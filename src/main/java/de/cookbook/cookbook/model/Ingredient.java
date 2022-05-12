@@ -3,15 +3,16 @@ package de.cookbook.cookbook.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "ingredient")
 public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "INGREDIENT_ID")
+    @Column(name = "ingredient_id")
     private long id;
-
+    @Column(name = "ingredient_name")
     private String ingredientName;
-
+    @Column(name = "quantity")
     private double quantity;
 
     public Ingredient() {

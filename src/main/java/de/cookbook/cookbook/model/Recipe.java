@@ -5,19 +5,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "recipe")
+@SecondaryTable(name = "ingredient", pkJoinColumns = @PrimaryKeyJoinColumn(name = "recipe_id"))
 public class Recipe {
-
+    //Rezept-ID als long
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RECIPE_ID")
+    @Column(name = "recipe_id")
     private long id;
-
+    //Rezept Name als String
+    @Column(name = "recipe_name")
     private String recipeName;
-
+    //Zutaten
     @ManyToMany //Gibt die Beziehung der Tabellen an
     @JoinTable(name = "Recipe_Ingredient",
-    joinColumns = @JoinColumn(name = "RECIPE_ID"),
-    inverseJoinColumns = @JoinColumn(name = "INGREDIENT_ID"))
+    joinColumns = @JoinColumn(name = "recipe_id"),
+    inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     public Set<Ingredient>Ingredients= new HashSet<>();
 
     public long getId() {

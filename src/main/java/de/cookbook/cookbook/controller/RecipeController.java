@@ -34,19 +34,22 @@ public class RecipeController {
 
     @GetMapping("/newRecipe")
     public String addRecipe(Ingredient ingredient,Ingredient quantity,Recipe recipe){
+
         return "newRecipe";
     }
 
     @GetMapping("/recipeCollection")
-    public String recipeCol(Model model){
+    public String recipeCollection(Model model){
         model.addAttribute("recipe",recipeRepository.findAll());
+        model.addAttribute("ingredient",ingredientRepository.findAll());
         return "recipeCollection";
     }
 
     @PostMapping("/saveRecipe")
-    public String saveRecipe(Recipe recipe,Ingredient ingredient){
+    public String saveRecipe(Recipe recipe,Ingredient ingredient,Ingredient quantity){
         recipeRepository.save(recipe);
         ingredientRepository.save(ingredient);
+        ingredientRepository.save(quantity);
         return "index";
     }
 

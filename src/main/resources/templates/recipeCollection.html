@@ -13,8 +13,8 @@
         <tbody>
             <tr th:each="recipe: ${recipe}">
                 <td th:text="${recipe.recipeName}"></td>
-                <td th:text="${recipe.ingredients}"></td>
-                <td th:text="${recipe.quantity}"></td>
+                <td th:text="${ingredient.ingredientName}"></td>
+                <td th:text="${ingredient.quantity}"></td>
             </tr>
         </tbody>
     </table>
