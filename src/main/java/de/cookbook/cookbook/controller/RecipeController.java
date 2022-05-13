@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class RecipeController {
@@ -29,11 +29,12 @@ public class RecipeController {
     //GET-Methoden
     @GetMapping("/index")
     public String index(){
+
         return "index";
     }
 
     @GetMapping("/newRecipe")
-    public String addRecipe(Ingredient ingredient,Ingredient quantity,Recipe recipe){
+    public String addRecipe(Ingredient ingredientName,Ingredient quantity,Recipe recipe){
 
         return "newRecipe";
     }
@@ -46,11 +47,17 @@ public class RecipeController {
     }
 
     @PostMapping("/saveRecipe")
-    public String saveRecipe(Recipe recipe,Ingredient ingredient,Ingredient quantity){
+    public String saveRecipe(Recipe recipe, Ingredient ingredient){
         recipeRepository.save(recipe);
         ingredientRepository.save(ingredient);
-        ingredientRepository.save(quantity);
+        enrollRecipeToIngredient(recipe,ingredient);
         return "index";
+    }
+
+    public Recipe enrollRecipeToIngredient(Recipe recipe,
+                                           Ingredient ingredient){
+        recipe.addRecipe(ingredient);
+        return recipeRepository.save(recipe);
     }
 
 }

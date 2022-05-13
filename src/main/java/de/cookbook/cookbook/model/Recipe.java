@@ -5,16 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "recipe")
-@SecondaryTable(name = "ingredient", pkJoinColumns = @PrimaryKeyJoinColumn(name = "recipe_id"))
 public class Recipe {
     //Rezept-ID als long
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "recipe_id")
     private long id;
     //Rezept Name als String
-    @Column(name = "recipe_name")
     private String recipeName;
     //Zutaten
     @ManyToMany //Gibt die Beziehung der Tabellen an
@@ -47,6 +43,11 @@ public class Recipe {
         Ingredients = ingredients;
     }
 
+    public void addRecipe(Ingredient ingredient){
+        Ingredients.add(ingredient);
+        }
+
+    }
     //    public Recipe() {
 //    }
 //    public Recipe(String recipeName, String ingredients, double quantity) {
@@ -54,4 +55,4 @@ public class Recipe {
 //        this.Ingredients = ingredients;
 //        this.quantity = quantity;
 //    }
-}
+
