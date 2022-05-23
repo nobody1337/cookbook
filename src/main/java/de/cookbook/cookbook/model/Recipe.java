@@ -31,6 +31,10 @@ public class Recipe {
         return recipeName;
     }
 
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
     public Set<Ingredient> getIngredients() {
         return Ingredients;
     }
@@ -38,7 +42,6 @@ public class Recipe {
     public void setIngredients(Set<Ingredient> ingredients) {
         Ingredients = ingredients;
     }
-
 
     public void enrollIngredient(Ingredient ingredient) {
         Ingredients.add(ingredient);
