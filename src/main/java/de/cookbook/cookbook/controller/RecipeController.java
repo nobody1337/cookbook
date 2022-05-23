@@ -8,10 +8,11 @@ import de.cookbook.cookbook.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Set;
+
 
 @Controller
 public class RecipeController {
@@ -29,14 +30,20 @@ public class RecipeController {
     //GET-Methoden
     @GetMapping("/index")
     public String index(){
-
         return "index";
     }
 
     @GetMapping("/newRecipe")
-    public String addRecipe(Ingredient ingredientName,Ingredient quantity,Recipe recipe){
-
+    public String createRecipe(Ingredient ingredientName,Ingredient quantity,Recipe recipe){
         return "newRecipe";
+    }
+
+    @PostMapping("/saveRecipe")
+    public String saveRecipe(Recipe recipe, Ingredient ingredient){
+        recipeRepository.save(recipe);
+        ingredientRepository.save(ingredient);
+        enrollIngredienttoRecipe(recipe,ingredient);
+        return "index";
     }
 
     @GetMapping("/recipeCollection")
@@ -46,18 +53,21 @@ public class RecipeController {
         return "recipeCollection";
     }
 
-    @PostMapping("/saveRecipe")
-    public String saveRecipe(Recipe recipe, Ingredient ingredient){
-        recipeRepository.save(recipe);
-        ingredientRepository.save(ingredient);
-        enrollRecipeToIngredient(recipe,ingredient);
-        return "index";
-    }
-
-    public Recipe enrollRecipeToIngredient(Recipe recipe,
+    public Recipe enrollIngredienttoRecipe(Recipe recipe,
                                            Ingredient ingredient){
-        recipe.addRecipe(ingredient);
+        recipe.enrollIngredient(ingredient);
         return recipeRepository.save(recipe);
     }
+    @PutMapping("/{recipeId}/ingredient/{ingredientId}")
+    Recipe enrollIngredienttoRecipe(@PathVariable long recipeId,
+                                    @PathVariable long ingredientId){
+        Recipe recipe = recipeRepository.findById(recipeId).get();
+        Ingredient ingredient = ingredientRepository.findById(ingredientId).get();
+        recipe.enrollIngredient(ingredient);
+        return recipeRepository.save(recipe);
+
+    }
+
+
 
 }

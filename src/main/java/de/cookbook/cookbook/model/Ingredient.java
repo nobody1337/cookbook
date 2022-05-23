@@ -1,6 +1,10 @@
 package de.cookbook.cookbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Ingredient {
@@ -12,6 +16,10 @@ public class Ingredient {
     private String ingredientName;
 
     private double quantity;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "Ingredients")
+    private Set<Recipe>recipes = new HashSet<>();
 
     public Ingredient() {
 

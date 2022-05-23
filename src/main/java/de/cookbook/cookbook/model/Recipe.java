@@ -31,10 +31,6 @@ public class Recipe {
         return recipeName;
     }
 
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
-    }
-
     public Set<Ingredient> getIngredients() {
         return Ingredients;
     }
@@ -43,16 +39,11 @@ public class Recipe {
         Ingredients = ingredients;
     }
 
-    public void addRecipe(Ingredient ingredient){
-        Ingredients.add(ingredient);
-        }
 
+    public void enrollIngredient(Ingredient ingredient) {
+        Ingredients.add(ingredient);
     }
-    //    public Recipe() {
-//    }
-//    public Recipe(String recipeName, String ingredients, double quantity) {
-//        this.RecipeName = recipeName;
-//        this.Ingredients = ingredients;
-//        this.quantity = quantity;
-//    }
+}
+
+ 
 
