@@ -11,11 +11,15 @@
             </tr>
         </thead>
         <tbody>
+
             <tr th:each="recipe: ${recipe}">
                 <td th:text="${recipe.recipeName}"></td>
-            <tr th:each="ingredient: ${ingredient}">
+<!--            </tr>-->
+            <th:block th:each="ingredient: ${ingredient}">
+<!--                <td rowspan="10"></td>-->
                 <td th:text="${ingredient.ingredientName}"></td>
                 <td th:text="${ingredient.quantity}"></td>
+            </th:block>
             </tr>
 <!--                <td th:text="${recipe.ingredients}"></td>-->
 <!--                <td th:text="${recipe.Ingredients.quantity}"></td>-->

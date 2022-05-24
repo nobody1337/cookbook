@@ -16,4 +16,6 @@ public class IngredientController {
         this.ingredientRepository = ingredientRepository;
     }
 
+
+
 }
